@@ -1,26 +1,31 @@
 package hu.unideb.inf.todo.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "todos")
 public class Todo {
 
-    private final long id;
-    private final long userId;
-    private final String content;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
+    private String content;
 
-    public Todo(long id, long userId, String content) {
-        this.id = id;
-        this.userId = userId;
-        this.content = content;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
-    }
-
-    public long getUserId() {
-        return userId;
     }
 
     public String getContent() {
         return content;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
 }
