@@ -16,6 +16,11 @@ public interface TodoRepository extends CrudRepository<Todo, Long> {
 
     @Transactional
     @Modifying
+    @Query("UPDATE Todo SET content = ?1 WHERE id = ?2")
+    public void updateTodo(String content, long id);
+
+    @Transactional
+    @Modifying
     @Query("DELETE FROM Todo t WHERE t.id = ?1")
     public void deleteTodoById(long id);
 

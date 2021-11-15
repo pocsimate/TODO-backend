@@ -1,15 +1,18 @@
 package hu.unideb.inf.todo.controller;
 
+import hu.unideb.inf.todo.exception.TodoNotFoundException;
 import hu.unideb.inf.todo.model.Todo;
 import hu.unideb.inf.todo.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "/todos")
+@RequestMapping(path = "/api/v1/todos")
 public class TodosController {
 
     @Autowired
@@ -21,34 +24,32 @@ public class TodosController {
     }
 
     @GetMapping(path = "/{id}")
-    public @ResponseBody Optional<Todo> getTodoById(@PathVariable long id) {
-        return todoRepository.getTodoById(id);
+    public ResponseEntity<Todo> getTodoById(@PathVariable long id) {
+        Todo todo = todoRepository.getTodoById(id).orElseThrow(() -> new TodoNotFoundException(id));
+        return ResponseEntity.ok(todo);
     }
 
     @DeleteMapping(path = "/{id}")
-    public @ResponseBody
-    Optional<Todo> deleteTodoById(@PathVariable long id) {
-        Optional<Todo> returnable = getTodoById(id);
-        if (returnable != null) {
-            todoRepository.deleteTodoById(id);
-            return returnable;
-        }
-        return null;
+    public ResponseEntity<Todo> deleteTodoById(@PathVariable long id) {
+        Todo todo = todoRepository.getTodoById(id).orElseThrow(() -> new TodoNotFoundException(id));
+        todoRepository.deleteTodoById(id);
+        return ResponseEntity.ok(todo);
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody Todo updateTodo(@RequestBody Todo newTodo, @PathVariable long id) {
-
-        return todoRepository.getTodoById(id)
-                .map(todo -> {
-                    todo.setContent(newTodo.getContent());
-                    return todoRepository.save(todo);
-                })
-                .orElseGet(() -> todoRepository.save(newTodo));
+    public ResponseEntity<Todo> updateTodo(@RequestBody Todo newTodo, @PathVariable long id) {
+        Optional<Todo> todo = todoRepository.getTodoById(id);
+        if(todo.isPresent()){
+            todoRepository.updateTodo(newTodo.getContent(), id);
+            todo.get().setContent(newTodo.getContent());
+            return ResponseEntity.ok(todo.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.CREATED).body(todoRepository.save(newTodo));
+        }
     }
 
     @PostMapping(path = "")
-    public @ResponseBody Todo newTodo(@RequestBody Todo todo){
+    public @ResponseBody Todo newTodo(@RequestBody Todo todo) {
         return todoRepository.save(todo);
     }
 
