@@ -1,15 +1,17 @@
 package hu.unideb.inf.todo.repository;
 
 import hu.unideb.inf.todo.model.Todo;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 
-public interface TodoRepository extends CrudRepository<Todo, Long> {
+public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     @Query("SELECT t FROM Todo t WHERE t.id = ?1")
     public Optional<Todo> getTodoById(long id);
