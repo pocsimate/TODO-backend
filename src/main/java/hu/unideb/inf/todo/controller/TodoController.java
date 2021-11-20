@@ -1,7 +1,6 @@
 package hu.unideb.inf.todo.controller;
 
 import hu.unideb.inf.todo.dto.TodoDTO;
-import hu.unideb.inf.todo.exception.TodoNotFoundException;
 import hu.unideb.inf.todo.model.Todo;
 import hu.unideb.inf.todo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/api/v1/todo")
