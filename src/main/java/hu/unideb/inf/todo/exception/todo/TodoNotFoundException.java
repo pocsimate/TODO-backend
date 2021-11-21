@@ -1,4 +1,4 @@
-package hu.unideb.inf.todo.exception;
+package hu.unideb.inf.todo.exception.todo;
 
 public class TodoNotFoundException extends RuntimeException {
 

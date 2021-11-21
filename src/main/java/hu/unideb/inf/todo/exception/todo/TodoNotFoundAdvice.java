@@ -1,4 +1,4 @@
-package hu.unideb.inf.todo.exception;
+package hu.unideb.inf.todo.exception.todo;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

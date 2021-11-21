@@ -1,7 +1,7 @@
 package hu.unideb.inf.todo.service;
 
-import hu.unideb.inf.todo.dto.TodoDTO;
-import hu.unideb.inf.todo.exception.TodoNotFoundException;
+import hu.unideb.inf.todo.dto.todo.TodoDTO;
+import hu.unideb.inf.todo.exception.todo.TodoNotFoundException;
 import hu.unideb.inf.todo.model.Todo;
 import hu.unideb.inf.todo.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

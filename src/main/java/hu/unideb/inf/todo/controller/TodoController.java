@@ -1,6 +1,6 @@
 package hu.unideb.inf.todo.controller;
 
-import hu.unideb.inf.todo.dto.TodoDTO;
+import hu.unideb.inf.todo.dto.todo.TodoDTO;
 import hu.unideb.inf.todo.model.Todo;
 import hu.unideb.inf.todo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path = "/api/v1/todo")
+@CrossOrigin
 public class TodoController {
 
     @Autowired

@@ -1,4 +1,4 @@
-package hu.unideb.inf.todo.dto;
+package hu.unideb.inf.todo.dto.todo;
 
 public class TodoDTO {
 
@@ -13,10 +13,6 @@ public class TodoDTO {
 
     public String getContent() {
         return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
 }
