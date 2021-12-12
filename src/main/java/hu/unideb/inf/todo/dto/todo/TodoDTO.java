@@ -7,7 +7,11 @@ public class TodoDTO {
     public TodoDTO() {
     }
 
-    public TodoDTO(String content) {
+    public TodoDTO(String content, Long userid) {
+        this.content = content;
+    }
+
+    public void setContent(String content) {
         this.content = content;
     }
 

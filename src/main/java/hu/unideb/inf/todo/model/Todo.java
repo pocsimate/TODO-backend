@@ -10,6 +10,11 @@ public class Todo {
     @Column(name = "id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "userid", referencedColumnName = "id")
+    private UserModel user;
+
     private String content;
 
     public Long getId() {
@@ -22,6 +27,10 @@ public class Todo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 
     public void setContent(String content) {

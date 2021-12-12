@@ -1,11 +1,13 @@
 package hu.unideb.inf.todo.model;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserModel {
 
     @Id
     @Column(name = "id")
@@ -19,7 +21,7 @@ public class User {
     private String password;
 
     @Column(name = "birth")
-    private Date birth;
+    private LocalDate birth;
 
     public void setUsername(String username) {
         this.username = username;
@@ -29,7 +31,7 @@ public class User {
         this.password = password;
     }
 
-    public void setBirth(Date birthDate) {
+    public void setBirth(LocalDate birthDate) {
         this.birth = birthDate;
     }
 
@@ -45,7 +47,7 @@ public class User {
         return password;
     }
 
-    public Date getBirth() {
+    public LocalDate getBirth() {
         return birth;
     }
 

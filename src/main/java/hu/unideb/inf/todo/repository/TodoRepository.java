@@ -5,12 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
-    @Query("SELECT t FROM Todo t WHERE t.id = ?1")
-    Optional<Todo> getTodoById(long id);
+    List<Todo> findTodosByUserId(long userId);
+
+    Optional<Todo> findTodoByIdAndUserId(long id, long userid);
 
     @Modifying
     @Query("UPDATE Todo SET content = ?1 WHERE id = ?2")
